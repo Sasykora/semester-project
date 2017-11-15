@@ -17,3 +17,12 @@ body {
     background-image: url("https://goo.gl/BsRdP6");
     background-repeat: no-repeat;
 }
+
+table tr td{
+    border:black solid 1px;
+}
+table tr td{
+    border:black solid 1px;
+    padding:3px;
+}
+
