@@ -14,15 +14,16 @@
  *= require_self
  */
 body {
-    background-image: url("https://goo.gl/BsRdP6");
-    background-repeat: no-repeat;
+
 }
 
-table tr td{
-    border:black solid 1px;
+table tr th{
+    background-color: lightgray;
 }
-table tr td{
-    border:black solid 1px;
-    padding:3px;
+
+.header{
+    background-color:dodgerblue;
+    width: 100%;
+    padding: 20px 0px 20px 20px;
 }
 
