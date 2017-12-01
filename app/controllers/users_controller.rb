@@ -61,6 +61,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def company_manager_data
+
+  end
+
+  def company_manager_by_channel
+    @channels = Channel.all
+    @channel_id = params[:channel_id]
+    @topic_ids = Topic.where(:channel_id => @channel_id).pluck(:id).uniq
+  end
+
+  def company_manager_by_user
+    @user_id = params[:user_id]
+    @users = User.where(:group_id => 1)
+  end
+
+  def company_manager_show_table
+    @sort = params[:sort]
+    @posts = Post.get_posts_for_show_table(@sort)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

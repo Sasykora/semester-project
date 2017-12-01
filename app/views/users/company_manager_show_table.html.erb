@@ -1,0 +1,59 @@
+<%= link_to "Posts per day", company_manager_data_path%>&nbsp;<%= link_to "Posts per day by channel", company_manager_by_channel_path(Channel.all.first.id)%>&nbsp;<%= link_to "Posts per day by user", company_manager_by_user_path(User.where(:group_id => 1).first.id)%>&nbsp;<%= link_to "Sortable table", company_manager_show_table_path("date-asc")%>
+</br>
+<h1>Sortable table of users</h1>
+<table id="company_manager_table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Post</th>
+        <th id="by_date" class="sortable">Date</th>
+        <th id="by_user" class="sortable">User</th>
+        <th id="by_channel" class="sortable">Channel</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% for @post in @posts do%>
+      <tr>
+        <td><%= @post.id%></td>
+        <td><%= @post.content%></td>
+        <td><%= @post.created_at.strftime("%d %b %Y")%></td>
+        <td><%= User.where(:id => @post.user_id).first.name.to_s%></td>
+        <% @channel = Channel.find_by_id(@post.topic.channel_id)%>
+        <td><%= @channel.name%></td>
+      </tr>
+     <% end %>
+    </tbody>
+  </table>
+
+<script>
+  var sort_param = "<%=@sort%>";
+  function toggle(p){
+    if(p.indexOf("asc") != -1){return p.replace("asc", "desc");}
+    if(p.indexOf("desc") != -1){return p.replace("desc", "asc");}
+  }
+  $("#by_date").click(function(){
+    if(sort_param.indexOf("date") != -1){	
+	var p = toggle(sort_param);
+	window.location = "/company_manager_show_table/" + String(p);
+    }else{
+       window.location = "/company_manager_show_table/date-asc";
+    }
+  });
+  $("#by_user").click(function(){
+    if(sort_param.indexOf("user") != -1){	
+	var p = toggle(sort_param);
+	window.location = "/company_manager_show_table/" + String(p);
+    }else{
+       window.location = "/company_manager_show_table/user-asc";
+    }
+  });
+  $("#by_channel").click(function(){
+    if(sort_param.indexOf("channel") != -1){	
+	var p = toggle(sort_param);
+	window.location = "/company_manager_show_table/" + String(p);
+    }else{
+       window.location = "/company_manager_show_table/channel-asc";
+    }
+  });
+
+</script>

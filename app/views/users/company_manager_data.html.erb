@@ -1,0 +1,8 @@
+<%= link_to "Posts per day", company_manager_data_path%>&nbsp;<%= link_to "Posts per day by channel", company_manager_by_channel_path(Channel.all.first.id)%>&nbsp;<%= link_to "Posts per day by user", company_manager_by_user_path(User.where(:group_id => 1).first.id)%>&nbsp;<%= link_to "Sortable table", company_manager_show_table_path("date-asc")%>
+<h1>Here are the statistics</h1>
+
+<h2>1) No of posts per day</h2>
+<%= line_chart Post.group_by_day(:created_at).count %>
+
+
+
