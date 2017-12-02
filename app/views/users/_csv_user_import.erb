@@ -1,0 +1,7 @@
+<%= form_tag({action: :csv_upload, method: :post}, multipart: true) do %>
+    <label>Input CSV File</label>
+    <%= file_field_tag 'csv' %>
+    <label>Choose group to add users to</label>
+    <%= select_tag :group, options_from_collection_for_select( Group.all, :id, :name)  %>
+    <%= submit_tag 'Upload' %>
+<% end %>
