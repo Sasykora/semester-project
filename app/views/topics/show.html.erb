@@ -10,5 +10,14 @@
   <%= @topic.lastpost %>
 </p>
 
+<p>
+  <strong>Posts:</strong>
+  <% @posts.each do |post| %>
+
+    <ul>Post Content: <%=  post.content %></ul>
+
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
