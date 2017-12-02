@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'topics#show', to: 'topics#show', as: 'topics_show'
+  get 'topics#new', to: 'topics#new', as: 'topics_new'
+  get 'posts#new', to: 'posts#new', as: 'posts_new'
   get 'company_manager_data', to: 'users#company_manager_data', as: 'company_manager_data'
   get 'company_manager_by_channel/:channel_id', to: 'users#company_manager_by_channel', as: 'company_manager_by_channel'
   get 'company_manager_by_user/:user_id', to: 'users#company_manager_by_user', as: 'company_manager_by_user'
