@@ -2,12 +2,21 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @channel.name %>
+  <%= @channel.name%>
 </p>
+
 
 <p>
   <strong>Description:</strong>
   <%= @channel.description %>
+</p>
+<p>
+  <strong>Topics:</strong>
+<% @topic.each do |topic| %>
+    <li><%= link_to h(topic.name), topics_path %></li>
+    <ul>Last Post: <%=  topic.lastpost %></ul>
+
+<% end %>
 </p>
 
 <%= link_to 'Edit', edit_channel_path(@channel) %> |
