@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @channel.name%>
+</p>
+
+
+<p>
+  <strong>Description:</strong>
+  <%= @channel.description %>
+</p>
+<p>
+
+<table>
+  <tr>
+    <th><strong>Topic</strong></th>
+    <th><strong>Last Post</strong></th>
+  </tr>
+  <% for topic in @channel.topics %>
+      <tr>
+        <td><%= link_to h(topic.name), topic_path(topic.id) %>
+        <td><%= topic.lastpost %></td>
+        <td><%= link_to 'Show', topic %></td>
+        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+        <td><%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>
+
+</p>
+<p><%= link_to 'New Topic', topics_new_path %></p>
+
+<%= link_to 'Edit', edit_channel_path(@channel) %> |
+<%= link_to 'Back', channels_path %>

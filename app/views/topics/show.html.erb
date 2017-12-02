@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <strong>Lastpost:</strong>
+  <%= @topic.lastpost %>
+</p>
+
+<p>
+
+<table>
+  <tr>
+    <th><strong>Post Content</strong></th>
+  </tr>
+  <% for post in @topic.posts %>
+      <tr>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Delete', post, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>
+
+</p>
+<p><%= link_to 'New Post', posts_new_path %></p>
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<%# If the user is a company manager then show the following url%>
+  <%= link_to "Show statistics", company_manager_data_path %>
+
+<%# end%>
+</br></br>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

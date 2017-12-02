@@ -1,0 +1,18 @@
+<%= link_to "Posts per day", company_manager_data_path%>&nbsp;<%= link_to "Posts per day by channel", company_manager_by_channel_path(Channel.all.first.id)%>&nbsp;<%= link_to "Posts per day by user", company_manager_by_user_path(User.where(:group_id => 1).first.id)%>&nbsp;<%= link_to "Sortable table", company_manager_show_table_path("date-asc")%>
+
+<h2>2) No of posts per day by user</h2>
+ <select id="user_selection">
+  <% for @user in @users%>
+    <option id="user_<%=@user.id%>" value="<%=@user.id%>"><%= @user.name%></option>
+  <% end %>
+</select> 
+</br></br>
+<%= line_chart Post.where(:user_id => @user_id).group_by_day(:created_at).count %>
+
+<script>
+  $("#user_selection option[id='user_<%=@user_id%>']").attr("selected", "selected");
+  $("#user_selection").change(function(){
+      var id = $(this).children(":selected").attr("id").substring(5);
+      window.location = "/company_manager_by_user/" + String(id);
+  });
+</script>
