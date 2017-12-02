@@ -13,7 +13,8 @@
 <p>
   <strong>Topics:</strong>
 <% @topic.each do |topic| %>
-    <li><%= link_to h(topic.name), topics_path %></li>
+
+    <li><%=link_to h(topic.name), topics_path %></li>
     <ul>Last Post: <%=  topic.lastpost %></ul>
 
 <% end %>
