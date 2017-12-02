@@ -12,5 +12,8 @@ Rails.application.routes.draw do
   get 'company_manager_by_user/:user_id', to: 'users#company_manager_by_user', as: 'company_manager_by_user'
   get 'company_manager_show_table/:sort', to: 'users#company_manager_show_table', as: 'company_manager_show_table'
 
+  get 'admin/users/csv-upload', to: 'users#csv_upload', as: 'upload_users_csv'
+  post 'admin/users/csv-upload', to: 'users#post_csv'
+
 
 end

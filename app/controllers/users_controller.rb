@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  require 'csv'
   # GET /users
   # GET /users.json
   def index
@@ -10,6 +11,24 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  end
+
+  def csv_upload
+
+  end
+
+  def post_csv
+    uploaded_io = params[:csv]
+    @group = Group.find(params[:group])
+    data = uploaded_io.read
+    csv = CSV.parse(data, headers: true)
+    csv.each do |row|
+      logger.warn(row.to_hash)
+      @user = User.new(row.to_hash)
+      @user.group = @group
+      @user.save
+
+    end
   end
 
   # GET /users/new
@@ -90,5 +109,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name)
+    end
+
+    def csv_params
+      params.permit(:csv, :group)
     end
 end
